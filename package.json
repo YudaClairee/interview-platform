@@ -1,0 +1,19 @@
+{
+  "name": "interview-platform",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "install:all": "cd backend && bun install && cd ../frontend && bun install",
+    "build": "cd frontend && bun run build",
+    "build:backend": "cd backend && bun run build",
+    "setup": "bun run install:all && bun run build",
+    "start": "cd backend && bun run start"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "concurrently": "^9.2.1"
+  }
+}
