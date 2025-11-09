@@ -6,4 +6,11 @@ export const env = {
   PORT: process.env.PORT,
   NODE_ENV: process.env.NODE_ENV,
   DB_URL: process.env.DB_URL,
+  CLIENT_URL: process.env.CLIENT_URL,
+  CLERK_SECRET_KEY: process.env.CLERK_SECRET_KEY,
+  CLERK_PUBLISHABLE_KEY: process.env.CLERK_PUBLISHABLE_KEY,
+  INNGEST_EVENT_KEY: process.env.INNGEST_EVENT_KEY,
+  INNGEST_SIGNIN_KEY: process.env.INNGEST_SIGNIN_KEY,
+  STREAM_API_KEY: process.env.STREAM_API_KEY,
+  STREAM_SECRET_KEY: process.env.STREAM_SECRET_KEY,
 };

@@ -4,6 +4,10 @@ import { env } from "./lib/env.js";
 import path from "path";
 import { fileURLToPath } from "url";
 import { connectDB } from "./lib/db.js";
+import cors from "cors";
+import { serve } from "inngest/express";
+import { inngestFunctions } from "./lib/inngest.js";
+import { inngest } from "./lib/inngest.js";
 
 const app = express();
 
@@ -14,6 +18,22 @@ const PORT = env.PORT;
 app.get("/api/v1/health", (req, res) => {
   res.status(200).json({ message: "Server is running!" });
 });
+
+app.use(express.json());
+app.use(
+  cors({
+    origin: env.CLIENT_URL,
+    credentials: true,
+  })
+);
+
+app.use(
+  "/api/inngest",
+  serve({
+    client: inngest,
+    functions: inngestFunctions,
+  })
+);
 
 // make ready for deployment
 if (env.NODE_ENV === "production") {
