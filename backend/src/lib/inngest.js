@@ -1,9 +1,12 @@
 import { Inngest } from "inngest";
 import { connectDB } from "./db.js";
 import User from "../models/User.js";
+import { env } from "./env.js";
 
 export const inngest = new Inngest({
   id: "oneseat",
+  eventKey: env.INNGEST_EVENT_KEY,
+  signingKey: env.INNGEST_SIGNING_KEY,
 });
 
 const syncUser = inngest.createFunction(
