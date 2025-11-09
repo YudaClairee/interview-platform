@@ -3,6 +3,15 @@ import { connectDB } from "./db.js";
 import User from "../models/User.js";
 import { env } from "./env.js";
 
+// Debug: Check if keys are loaded
+console.log("Inngest Config Check:");
+console.log("- Has Event Key:", !!env.INNGEST_EVENT_KEY);
+console.log("- Has Signing Key:", !!env.INNGEST_SIGNING_KEY);
+console.log(
+  "- Signing Key starts with 'signkey-':",
+  env.INNGEST_SIGNING_KEY?.startsWith("signkey-")
+);
+
 export const inngest = new Inngest({
   id: "oneseat",
   eventKey: env.INNGEST_EVENT_KEY,
