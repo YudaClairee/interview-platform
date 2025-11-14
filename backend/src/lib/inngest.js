@@ -11,6 +11,9 @@ console.log(
   "- Signing Key starts with 'signkey-':",
   env.INNGEST_SIGNING_KEY?.startsWith("signkey-")
 );
+console.log("- Signing Key first 20 chars:", env.INNGEST_SIGNING_KEY?.substring(0, 20));
+console.log("- Signing Key length:", env.INNGEST_SIGNING_KEY?.length);
+console.log("- Signing Key type:", typeof env.INNGEST_SIGNING_KEY);
 
 export const inngest = new Inngest({
   id: "oneseat",
