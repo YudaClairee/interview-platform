@@ -2,6 +2,7 @@ import { Inngest } from "inngest";
 import { connectDB } from "./db.js";
 import User from "../models/User.js";
 import { env } from "./env.js";
+import { deleteStreamUser, upsertStreamUser } from "./stream.js";
 
 // Debug: Check if keys are loaded
 console.log("Inngest Config Check:");
