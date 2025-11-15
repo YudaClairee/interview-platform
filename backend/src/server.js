@@ -5,8 +5,6 @@ import cors from "cors";
 import { serve } from "inngest/express";
 import { inngest, inngestFunctions } from "./lib/inngest.js";
 import path from "path";
-import { env } from "./lib/env.js";
-import e from "express";
 
 const app = express();
 const PORT = env.PORT;
