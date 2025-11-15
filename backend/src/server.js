@@ -16,6 +16,8 @@ app.use(
   })
 );
 
+const __dirname = path.resolve();
+
 app.get("/api/v1/health", (req, res) => {
   res.status(200).json({ message: "Server is running!" });
 });
@@ -27,6 +29,15 @@ app.use(
     functions: inngestFunctions,
   })
 );
+
+// make our app ready for deployment
+if (ENV.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "../frontend/dist")));
+
+  app.get("/{*any}", (req, res) => {
+    res.sendFile(path.join(__dirname, "../frontend", "dist", "index.html"));
+  });
+}
 
 const startServer = async () => {
   try {

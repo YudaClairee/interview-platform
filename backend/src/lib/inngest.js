@@ -11,7 +11,10 @@ console.log(
   "- Signing Key starts with 'signkey-':",
   env.INNGEST_SIGNING_KEY?.startsWith("signkey-")
 );
-console.log("- Signing Key first 20 chars:", env.INNGEST_SIGNING_KEY?.substring(0, 20));
+console.log(
+  "- Signing Key first 20 chars:",
+  env.INNGEST_SIGNING_KEY?.substring(0, 20)
+);
 console.log("- Signing Key length:", env.INNGEST_SIGNING_KEY?.length);
 console.log("- Signing Key type:", typeof env.INNGEST_SIGNING_KEY);
 
@@ -40,6 +43,12 @@ const syncUser = inngest.createFunction(
     };
 
     const user = await User.create(newUser);
+    await upsertStreamUser({
+      id: user.clerkId.toString(),
+      name: user.name,
+      profileImage: user.profileImage,
+    });
+
     return user;
   }
 );
@@ -54,6 +63,7 @@ const deleteUser = inngest.createFunction(
     const { id } = event.data;
 
     await User.deleteOne({ clerkId: id });
+    await deleteStreamUser(id.toString());
     return { success: true };
   }
 );
