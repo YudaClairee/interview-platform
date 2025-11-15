@@ -5,7 +5,8 @@ import cors from "cors";
 import { serve } from "inngest/express";
 import { inngest, inngestFunctions } from "./lib/inngest.js";
 import path from "path";
-import { ENV } from "./lib/env.js";
+import { env } from "./lib/env.js";
+import e from "express";
 
 const app = express();
 const PORT = env.PORT;
@@ -33,7 +34,7 @@ app.use(
 );
 
 // make our app ready for deployment
-if (ENV.NODE_ENV === "production") {
+if (env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
   app.get("/{*any}", (req, res) => {
